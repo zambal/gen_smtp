@@ -63,7 +63,7 @@ guess_FQDN() ->
 -compile({nowarn_deprecated_function, [{crypto, md5_mac}]}).
 -spec compute_cram_digest(Key :: binary(), Data :: string()) -> binary().
 compute_cram_digest(Key, Data) ->
-	Bin = crypto:hmac(md5, Key, Data),
+	Bin = crypto:mac(hmac, md5, Key, Data),
 	list_to_binary([io_lib:format("~2.16.0b", [X]) || <<X>> <= Bin]).
 
 %% @doc Generate a seed string for CRAM.
